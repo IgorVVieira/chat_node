@@ -1,18 +1,24 @@
 const express = require('express');
-const path = require('path');
-
 const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
-
+const nunjucks = require('nunjucks');
 const porta = 3000;
 
-app.use(express.static(path.join(__dirname, 'public')));
-app.set('views', path.join(__dirname, 'public'));
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
+const configure = () => {
+    // Configurar server p/ apresentar arquivos estáticos(.js, .css ... )
+    app.use(express.static('../frontend/public'));
 
-app.use('/', (req, res) => {
+    // Configurando a template engine(nunjucks)
+    nunjucks.configure('../frontend', {
+        express: app,
+        noCache: true,
+    });
+};
+
+configure();
+
+app.get('/', (req, res) => {
     res.render('index.html');
 });
 
@@ -30,4 +36,4 @@ io.on('connection', socket => {
 
 server.listen(porta, () => {
     console.log(`Rodando na porta ${porta}`);
-})
+});
