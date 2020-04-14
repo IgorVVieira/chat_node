@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 let messages = [];
 
 io.on('connection', socket => {
-    console.log(`Socket conectado: ${socket.id}`);
+    console.log(`Socket conectado, id: ${socket.id}`);
 
     socket.emit('previousMessages', messages);
     socket.on('sendMessage', data => {
@@ -34,6 +34,6 @@ io.on('connection', socket => {
     });
 });
 
-server.listen(porta, () => {
+app.listen(porta, () => {
     console.log(`Rodando na porta ${porta}`);
 });
