@@ -2,24 +2,16 @@ const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
-const nunjucks = require('nunjucks');
+
 const porta = 3000;
 
-const configure = () => {
-    // Configurar server p/ apresentar arquivos estáticos(.js, .css ... )
-    app.use(express.static('../frontend/public'));
+// Configurar server p/ apresentar arquivos estáticos(.js, .css ... )
+app.use(express.static('./public'));
 
-    // Configurando a template engine(nunjucks)
-    nunjucks.configure('../frontend', {
-        express: app,
-        noCache: true,
-    });
-};
-
-configure();
+app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-    res.render('index.html');
+    res.render('index');
 });
 
 let messages = [];
