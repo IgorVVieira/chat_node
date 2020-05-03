@@ -6,21 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat em Node.JS</title>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-
     <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
     <form id="chat">
-        <input type="text" name="username" placeholder="Digite seu Usuário">
+        <input type="text" name="username" placeholder="Digite seu Usuário" required>
         <div class="messages"> </div>
-        <input type="text" name="message" placeholder="Digite sua mensagem">
+        <input type="text" name="message" placeholder="Digite sua mensagem" required>
         <button type="submit">Eviar</button>
-
-        <script src="./script.js"></script>
     </form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="./script.js"></script>
 </body>
 
 </html>
